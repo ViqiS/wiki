@@ -3,20 +3,77 @@
 import React from 'react';
 import {LuExternalLink} from 'react-icons/Lu'
 import styles from './Cards.module.css';
+import Link from 'next/link';
 
 export function Cards() {
 
+  const proyectos = [
+    {
+      titulo: 'Generador de perfiles',
+      descripcion: 'Genera perfiles consumiendo de una api',
+      imagen: 'generadorPerfiles.png',
+      url: 'https://stalwart-gnome-b94e4a.netlify.app/'
+    },
+    {
+      titulo: 'Tienda',
+      descripcion: 'Tienda ficticia para crear compras, consumiendo una api',
+      imagen: 'portafolio2tienda.png',
+      url: 'https://stalwart-gnome-b94e4a.netlify.app/'
+    },
+    {
+      titulo: 'Tareas pendientes',
+      descripcion: 'Aplicación creada con React. Podés agregar, editar y eliminar tareas. ',
+      imagen: 'workpending3.png',
+      url: 'https://stalwart-gnome-b94e4a.netlify.app/'
+    },
+    {
+      titulo: 'Login de usuarios',
+      descripcion: 'Creada para realizar el login y registro de usuarios',
+      imagen: 'login1.jpg',
+      url: 'https://stalwart-gnome-b94e4a.netlify.app/'
+    },
+    {
+      titulo: 'Detek',
+      descripcion: 'Página web creada para empresa de productos electronicos',
+      imagen: 'detek2.png',
+      url: 'https://detek.com.ar/'
+    },
+    
+  ]
+
   return(
     <>
-    <section className={styles.contenedorCards}>
-      <section className={styles.cardArriba}>
+    <section className={styles.sectionCards}>
+    <div className={styles.containerCards}>
+  {proyectos.map((proyecto, index) => (
+    <div key={index} className={styles.card}>
+      <figure className={styles.containerImage}>
+        <img className={styles.image} src={proyecto.imagen} alt={proyecto.titulo} />
+      </figure>
+
+      <div className={styles.description}>
+        <h1 className={styles.title}>{proyecto.titulo}</h1>
+        <p className={styles.textCard}>{proyecto.descripcion}</p>
+      </div>
+
+      <div className={styles.link}>
+        <a href={proyecto.url} className={styles.url}>
+          <LuExternalLink className={styles.goUrl} />
+        </a>
+      </div>
+    </div>
+  ))}
+</div>
+</section>
+
+      {/* <section className={styles.cardArriba}>
 
         <div className={styles.card1}>
           <div className={styles.img}>
           <img src="generadorPerfiles.png" className={styles.imgCard1} alt='random profile' />
           </div>
           <div className={styles.descripcion}>
-          <h1 className={styles.titleCard}>Generador de perfiles{/*EN INGLES Random profile */}</h1>
+          <h1 className={styles.titleCard}>Generador de perfiles</h1>
           <p className={styles.textCard}>
             Genera perfiles atravez de una api  
           </p>
@@ -34,7 +91,7 @@ export function Cards() {
         <div className={styles.card2}>
         <div className={styles.img}>
           <img src="portafolio2tienda.png" className={styles.imgCard2} alt='Tu Shop' />
-          {/* buscar una imagen mejor y hacer deploy  */}
+          
           </div>
           <div className={styles.descripcion}>
           <h1 className={styles.titleCard}>Tienda</h1>
@@ -88,8 +145,8 @@ export function Cards() {
           </p>
           </a>
         </div>
-      </section>
-    </section>
+      </section> */}
+    
     </>
   )
 }
