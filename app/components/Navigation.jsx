@@ -7,17 +7,8 @@ import { SlOptionsVertical } from 'react-icons/sl'
 import { Logos } from './logos';
 import styles from './navigation.module.css';
 import { Switch } from '../components/Switch';
-/* 
-import Link from 'next/link';
-
-const links = [{
-  label: 'Inicio',
-  route: '/'
-}, {
-  label: 'Proyectos',
-  route: '/proyectos' // Corregí el nombre de la ruta si es necesario
-}]
- */
+import {MdOutlineDarkMode} from 'react-icons/Md';
+import {BsSun} from 'react-icons/Bs'
 
 export function Navigation() {
   //abrir menu hamburguesa
@@ -30,6 +21,13 @@ export function Navigation() {
     
     console.log('temahome', newTheme);
   };
+
+  const handleReportError = () => {
+    // Utiliza el enlace mailto para abrir el cliente de correo por defecto del usuario
+    // con tu dirección de correo electrónico prellenada.
+    window.location.href = 'mailto:tucorreo@gmail.com?subject=Error en el sitio web&body=Descripción del error:';
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -39,10 +37,18 @@ export function Navigation() {
   }
   
   const searchContainerRef = useRef(null);
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (isSearchOpen && searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
-        setIsSearchOpen(false);
+      if (
+        !event.target.closest('.navbarActive') &&
+        !event.target.closest('.cajaSearchOpen') &&
+        !searchContainerRef.current.contains(event.target)
+      ) {
+        if (isMenuOpen || isSearchOpen) {
+          setIsMenuOpen(false);
+          setIsSearchOpen(false);
+        }
       }
     };
 
@@ -50,7 +56,8 @@ export function Navigation() {
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
-  }, [isSearchOpen]);
+  }, [isMenuOpen, isSearchOpen]);
+
 
 
   return (
@@ -63,19 +70,13 @@ export function Navigation() {
           {/* {isMenuOpen && ( */}
             <section className={`${styles.menuNav} ${isMenuOpen ? styles.menuNavActive : ''}`}>
               <ul className={`${styles.navbar} ${isMenuOpen ? styles.navbarActive : ''}`}>
-              {/*  {links.map(({ label, route }) => (
-                  <li key={label} className={styles.navbar1}>
-                    <Link href={route} className={styles.textnav}>
-                      {label}
-                    </Link>
-                  </li>
-                ))} */}
+
                 <li className={styles.navbar1}>
-                  <a className={styles.textnav} href="/">Contact</a>
-                  </li>
-                <li className={styles.navbar1}>
-                  <a className={styles.textnav} href="/">Notificar un error</a>
-                  </li>
+                <a href="/#contacto">Contacto</a>
+              </li>
+              <li className={styles.navbar1}>
+                <a href="mailto:pvdev.web@gmail.com?subject=Notificar%20un%20error&body=He%20encontrado%20un%20error">Notificar un error</a>
+              </li>
               </ul>
             </section>
          {/*  )} */}
@@ -83,10 +84,15 @@ export function Navigation() {
 
         <Logos theme={theme} />
 
-        <div className={styles.changeSwitch}>
-        <Switch onThemeChange={handleThemeChange} />
+        <div className={styles.changeSwitch}>{/* no tiene clase activada */}
+          <Switch onThemeChange={handleThemeChange} />
+          
+            
         </div>
-        
+        <section className={styles.containerCambio}>  
+          <MdOutlineDarkMode className={`${theme === 'light' ? styles.luna : styles.lunaOff}`} />
+          <BsSun className={`${theme === 'dark' ? styles.sol : styles.solOff}`} />
+        </section>
       </section>
       
       <section className={`${styles.navbarRigth} ${isSearchOpen ? styles.navbarRigthOpen : ''}`}>
@@ -109,5 +115,6 @@ export function Navigation() {
         </div>
       </section>
     </header>
+    
   );
 }
