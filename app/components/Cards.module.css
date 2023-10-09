@@ -39,16 +39,11 @@
   object-fit: cover;
   border-radius: 14px 14px 0px 0px;
   border: 2px solid var(--cardborde);
-  border: 2px solid var(--cardborde);
 }
 .description {
   width: 100%;
   height: auto;
-.description {
-  width: 100%;
-  height: auto;
   display: flex;
-  flex-direction: column;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -57,16 +52,7 @@
 }
 .title {
   font-size: 18px;
-  margin: 10px 0 10px 0;
-  border-top: 1px solid var(--cardborde);
-}
-.title {
-  font-size: 18px;
   font-family: 'Lisu Bosa', serif;
-  text-align: center;
-  margin: 10px 0 10px 0;
-  color: var(--letras2);
-}
   text-align: center;
   margin: 10px 0 10px 0;
   color: var(--letras2);
@@ -89,8 +75,6 @@
   justify-content: center;
   align-items: center;
 }
-.url {
-  color:var(--cardborde);
 .url {
   color:var(--cardborde);
 }

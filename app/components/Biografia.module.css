@@ -3,19 +3,14 @@
   display: flex;
   width: 100%;
   height: fit-content;
-  width: 100%;
-  height: fit-content;
   flex-direction: column;
   padding:20px 30px 0px 30px;
-  margin-bottom: 50px;
   margin-bottom: 50px;
   background-color:var(--background);
   /* poner padding left y rigth en general
   para poder central al medio todo. */
 }
 .inicio {
-  width: 100%;
-  height: fit-content;
   width: 100%;
   height: fit-content;
   display: flex;
@@ -26,8 +21,6 @@
 .inicio1 {
   color: var(--letras2);
   width: 380px;
-  height: fit-content;
-  font-size: 11px;
   height: fit-content;
   font-size: 11px;
   font-family: 'DM Sans', sans-serif;
@@ -45,11 +38,6 @@
   padding-right: 7px;
 }
 /* inicio 2 */
-.cardsBio {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}
 .cardsBio {
   display: flex;
   justify-content: space-between;
@@ -212,7 +200,6 @@
   .inicio {
     display: flex;
     justify-content: space-evenly;
-    justify-content: space-evenly;
   }
   .inicio1 {
     width: 50%;
@@ -259,7 +246,6 @@
     justify-content: center;
   }
   .inicio1 {
-    font-size:15px;
     font-size:15px;
     line-height: 1.85;
   }
