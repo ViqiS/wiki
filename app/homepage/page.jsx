@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './homepage.module.css';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import {IoIosArrowDown} from 'react-icons/Io';
@@ -30,6 +30,24 @@ export function HomePage() {
     const toggleInputIdioma = () => {
       setIsInputIdiomaOpen(!isInputIdiomasOpen)
     }
+
+    useEffect(() => {
+      const handleOutsideClick = (event) => {
+        if (
+          !event.target.closest('.menuHome2') &&
+          !event.target.closest('.listIdiomas')
+        ) {
+          setIsMenu2Open(false);
+          setIsInputIdiomaOpen(false);
+        }
+      }
+      document.addEventListener('click', handleOutsideClick);
+  
+      // Limpiar el evento cuando el componente se desmonte
+      return () => {
+        document.removeEventListener('click', handleOutsideClick);
+      };
+    }, [isMenu2Open, isInputIdiomasOpen]);
   return (
     <>
     {/* <div className={styles.paddingHome}> */}

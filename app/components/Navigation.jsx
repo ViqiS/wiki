@@ -37,10 +37,18 @@ export function Navigation() {
   }
   
   const searchContainerRef = useRef(null);
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (isSearchOpen && searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
-        setIsSearchOpen(false);
+      if (
+        !event.target.closest('.navbarActive') &&
+        !event.target.closest('.cajaSearchOpen') &&
+        !searchContainerRef.current.contains(event.target)
+      ) {
+        if (isMenuOpen || isSearchOpen) {
+          setIsMenuOpen(false);
+          setIsSearchOpen(false);
+        }
       }
     };
 
@@ -48,7 +56,8 @@ export function Navigation() {
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
-  }, [isSearchOpen]);
+  }, [isMenuOpen, isSearchOpen]);
+
 
 
   return (
